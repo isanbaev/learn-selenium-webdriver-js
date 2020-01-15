@@ -1,7 +1,33 @@
 let webdriver = require("selenium-webdriver"),
+  { describe, it, after, before } = require("selenium-webdriver"),
   By = webdriver.By,
   until = webdriver.until;
+let driver;
 
+describe("library app scenarios", function() {
+  beforeEach(function() {
+    driver = new webdriver.Builder().forBrowser("chrome").build();
+    driver.get("http://library-app.firebaseapp.com");
+  });
+
+  afterEach(function() {
+    driver.quit();
+  });
+
+  it("Changes Button opacity upon email being filled out", function() {});
+  it("Submitting email shows an alert", function() {});
+  it("Shows a navbar", function() {
+    driver
+      .findElement(By.css("nav"))
+      .getText()
+      .then(function(txt) {
+        console.log(txt);
+      });
+  });
+});
+
+{
+  /*
 let driver = new webdriver.Builder().forBrowser("chrome").build();
 driver.get("http://library-app.firebaseapp.com");
 
@@ -26,7 +52,6 @@ driver
     console.log(`Alert success text is: ${txt}`);
   });
 
-/*
 driver.findElement(By.css("#ember14"));
 driver
   .findElement(By.xpath('//*[@id="ember3"]/div/div/div/div[2]/button'))
@@ -44,3 +69,4 @@ driver.findElements(By.css("#main-navbar")).then(function(elements) {
 }); 
 
 */
+}
