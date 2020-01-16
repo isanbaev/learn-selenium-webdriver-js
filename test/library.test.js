@@ -1,6 +1,5 @@
 const webdriver = require("selenium-webdriver");
 const { Builder, By, Key, until } = require("selenium-webdriver");
-const { describe, it, after, before } = require("selenium-webdriver/testing");
 
 let driver;
 
