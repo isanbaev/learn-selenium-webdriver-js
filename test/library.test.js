@@ -1,7 +1,7 @@
-let webdriver = require("selenium-webdriver"),
-  { describe, it, after, before } = require("selenium-webdriver"),
-  By = webdriver.By,
-  until = webdriver.until;
+const webdriver = require("selenium-webdriver");
+const { Builder, By, Key, until } = require("selenium-webdriver");
+const { describe, it, after, before } = require("selenium-webdriver/testing");
+
 let driver;
 
 describe("library app scenarios", function() {
@@ -14,15 +14,14 @@ describe("library app scenarios", function() {
     driver.quit();
   });
 
-  it("Changes Button opacity upon email being filled out", function() {});
-  it("Submitting email shows an alert", function() {});
-  it("Shows a navbar", function() {
-    driver
-      .findElement(By.css("nav"))
-      .getText()
-      .then(function(txt) {
-        console.log(txt);
+  it("Changes Button opacity upon email being filled out", function() {
+    let submitBtn = driver.findElement(By.css(".btn-lg"));
+    driver.findElement(By.css("input")).sendKeys("user@fakemail.loc");
+    driver.wait(function() {
+      return submitBtn.getCssValue("opacity").then(function(result) {
+        return result === "1";
       });
+    }, 5000);
   });
 });
 
